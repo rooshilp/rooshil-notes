@@ -1,17 +1,20 @@
 package cs.ualberta.ca.rooshil_notes;
 
 import java.util.Date;
+import java.util.ArrayList;
 
 public class CounterModel {
 	private String name;
 	private Integer count;
 	private Date createDate;
+	private ArrayList<Date> countDates;
 	
 	public CounterModel(String name) {
 		super();
 		this.name = name;
 		this.createDate = new Date();
 		this.count = 0;
+		this.countDates = new ArrayList<Date>();
 	}
 
 	public String getName() {
@@ -36,6 +39,11 @@ public class CounterModel {
 	
 	public void incrementCount() {
 		this.count += 1;
+		
+	}
+	
+	public ArrayList<Date> getCountDates() {
+		return countDates;
 	}
 	
 	
