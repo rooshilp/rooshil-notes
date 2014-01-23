@@ -15,9 +15,12 @@ public class CounterListModel {
 		return counterList;
 	}
 
-	public static void setCounterList(ArrayList<CounterModel> counterList) {
-		CounterListModel.counterList = counterList;
+	public void addCounter(CounterModel counterModel) {
+		CounterListModel.counterList.add(counterModel);
 	}
 	
+	public void removeCounter(CounterModel counterModel) {
+		CounterListModel.counterList.remove(counterModel);
+	}
 	
 }
