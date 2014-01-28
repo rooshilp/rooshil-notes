@@ -7,14 +7,14 @@ public class CounterModel {
 	private String name;
 	private Integer count;
 	private Date createDate;
-	//private ArrayList<Date> countDates;
+	private ArrayList<Date> countDates;
 	
 	public CounterModel(String name) {
 		super();
 		this.name = name;
 		this.createDate = new Date();
 		this.count = 0;
-		//this.countDates = new ArrayList<Date>();
+		this.countDates = new ArrayList<Date>();
 	}
 
 	public String getName() {
@@ -39,11 +39,12 @@ public class CounterModel {
 	
 	public void incrementCount() {
 		this.count += 1;
+		this.countDates.add(new Date());
 	}
 	
-	/*public ArrayList<Date> getCountDates() {
-		//return countDates;
+	public ArrayList<Date> getCountDates() {
+		return countDates;
 	}
-	*/
+	
 	
 }
