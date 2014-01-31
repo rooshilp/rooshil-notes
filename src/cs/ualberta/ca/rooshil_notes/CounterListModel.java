@@ -10,7 +10,7 @@ public class CounterListModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static ArrayList<CounterModel> counterList;
 
-	public CounterListModel() {
+	CounterListModel() {
 		super();
 		counterList = new ArrayList<CounterModel>();
 	}
@@ -24,19 +24,19 @@ public class CounterListModel implements Serializable{
 		});
 	}
 
-	public static ArrayList<CounterModel> getCounterList() {
+	public ArrayList<CounterModel> getCounterList() {
 		return counterList;
 	}
 
-	public void addCounter(String name) {
+	public static void  addCounter(String name) {
 		CounterListModel.counterList.add(new CounterModel(name));
 	}
 	
-	public void removeCounter(int index) {
+	public static void removeCounter(int index) {
 		CounterListModel.counterList.remove(index);
 	}
 	
-	public CounterModel getCounter(int index) {
+	public static CounterModel getCounter(int index) {
 		return CounterListModel.counterList.get(index);
 	}
 }

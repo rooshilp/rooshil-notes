@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 
-public class CreateCounterActivity extends Activity {
+public class CreateCounterActivity extends CounterListActivity {
 
 	private Button createCounter;
 	private EditText counterName;
@@ -23,12 +25,15 @@ public class CreateCounterActivity extends Activity {
 		createCounter = (Button) findViewById(R.id.create);
 		counterName = (EditText) findViewById(R.id.namebox);
 		
-		createCounter.setOnClickListener(new View.onClickListener() {
+		createCounter.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				String name = counterName.getText().toString();
+				CounterListModel.addCounter(name);
+				saveToFile();
+				finish();
 			}
-		}
+		});
 	}
 
 	/**

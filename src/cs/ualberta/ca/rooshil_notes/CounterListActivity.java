@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,7 +24,7 @@ public class CounterListActivity extends Activity {
 
 	private static String saveFile = "counterList.sav";
 	private static int currentCounter;
-	private static CounterListModel counterList;
+	private CounterListModel counterListObject;
 	private ArrayAdapter<CounterModel> counterListAdapter;
 	private ListView counterListView;
 	private Button createCounter;
@@ -43,7 +44,7 @@ public class CounterListActivity extends Activity {
 		});
 		this.loadFromFile();
 		counterListView = (ListView) findViewById(R.id.counterList);
-		counterListAdapter = new ArrayAdapter<CounterModel>(this, android.R.layout.simple_list_item_1, CounterListModel.getCounterList());
+		counterListAdapter = new ArrayAdapter<CounterModel>(CounterListActivity.this, android.R.layout.simple_list_item_1, counterListObject.getCounterList());
 		counterListView.setAdapter(counterListAdapter);
 		counterListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -64,8 +65,7 @@ public class CounterListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		counterList.sortCounterList();
-		this.saveToFile();
+		counterListObject.sortCounterList();
 		counterListAdapter.notifyDataSetChanged();
 	}
 
@@ -73,7 +73,7 @@ public class CounterListActivity extends Activity {
 		try {
 			FileOutputStream fileoutputstream = openFileOutput(saveFile, 0);
 			ObjectOutputStream objectoutputstream = new ObjectOutputStream(fileoutputstream);
-			objectoutputstream.writeObject(counterList);
+			objectoutputstream.writeObject(counterListObject);
 			objectoutputstream.close();
 		}
 		catch (IOException e) {
@@ -82,10 +82,11 @@ public class CounterListActivity extends Activity {
 	}
 	
 	protected void loadFromFile() {
+		clearCounterList();
 		try {
 			FileInputStream fileinputstream = openFileInput(saveFile);
 			ObjectInputStream objectinputstream = new ObjectInputStream(fileinputstream);
-			counterList = (CounterListModel) objectinputstream.readObject();
+			counterListObject = (CounterListModel) objectinputstream.readObject();
 			objectinputstream.close();
 		}
 		catch (FileNotFoundException e) {
@@ -102,11 +103,11 @@ public class CounterListActivity extends Activity {
 	}
 	
 	protected void clearCounterList() {
-		counterList = null;
+		counterListObject = null;
 	}
 	
 	private void createNewCounterList() {
-		counterList = new CounterListModel();
+		counterListObject = new CounterListModel();
 	}
 	
 	protected void setCurrentCounter(int i) {
@@ -118,6 +119,6 @@ public class CounterListActivity extends Activity {
 	}
 	
 	protected void removeCurrentCounter() {
-		counterList.removeCounter(currentCounter);
+		CounterListModel.removeCounter(currentCounter);
 	}
 }
