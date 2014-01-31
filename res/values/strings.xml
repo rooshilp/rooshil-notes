@@ -4,5 +4,9 @@
     <string name="app_name">rooshil-notes</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_counter">CounterActivity</string>
+    <string name="title_activity_counter_rename">CounterRenameActivity</string>
+    <string name="title_activity_counter_statistics">CounterStatisticsActivity</string>
+    <string name="title_activity_create_counter">CreateCounterActivity</string>
 
 </resources>

@@ -53,8 +53,8 @@ public class CounterModel implements Serializable {
 		for(Date date : countDates) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
-			String hashKey = calendar.get(Calendar.YEAR) + "-" +
-			monthName[calendar.get(Calendar.MONTH)] + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "-" +
+			String hashKey = monthName[calendar.get(Calendar.MONTH)] + " " +
+			calendar.get(Calendar.DAY_OF_MONTH) + ", " + calendar.get(Calendar.YEAR) + " - " +
 			calendar.get(Calendar.HOUR_OF_DAY) + ":00";
 			
 			if (hashMap.containsKey(hashKey)) {
@@ -78,8 +78,8 @@ public class CounterModel implements Serializable {
 		for(Date date : countDates) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
-			String hashKey = calendar.get(Calendar.YEAR) + "-" +
-			monthName[calendar.get(Calendar.MONTH)] + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+			String hashKey = monthName[calendar.get(Calendar.MONTH)] + " " +
+			calendar.get(Calendar.DAY_OF_MONTH) + ", " + calendar.get(Calendar.YEAR);
 			
 			if (hashMap.containsKey(hashKey)) {
 				hashMap.put(hashKey, hashMap.get(hashKey)+1);
@@ -101,8 +101,8 @@ public class CounterModel implements Serializable {
 		for(Date date : countDates) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
-			String hashKey = calendar.get(Calendar.YEAR) + "-" +
-			monthName[calendar.get(Calendar.MONTH)] + "-" + calendar.get(Calendar.WEEK_OF_MONTH);
+			String hashKey = monthName[calendar.get(Calendar.MONTH)] + " Week " +
+					calendar.get(Calendar.WEEK_OF_MONTH) + ", " + calendar.get(Calendar.YEAR);
 			
 			if (hashMap.containsKey(hashKey)) {
 				hashMap.put(hashKey, hashMap.get(hashKey)+1);
@@ -124,8 +124,7 @@ public class CounterModel implements Serializable {
 		for(Date date : countDates) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
-			String hashKey = calendar.get(Calendar.YEAR) + "-" +
-			monthName[calendar.get(Calendar.MONTH)];
+			String hashKey = monthName[calendar.get(Calendar.MONTH)] + ", " + calendar.get(Calendar.YEAR);
 			
 			if (hashMap.containsKey(hashKey)) {
 				hashMap.put(hashKey, hashMap.get(hashKey)+1);

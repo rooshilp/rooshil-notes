@@ -14,13 +14,45 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="cs.ualberta.ca.rooshil_notes.MainActivity"
+            android:name="cs.ualberta.ca.rooshil_notes.CounterListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="cs.ualberta.ca.rooshil_notes.CounterActivity"
+            android:label="@string/title_activity_counter"
+            android:parentActivityName="cs.ualberta.ca.rooshil_notes.CounterListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs.ualberta.ca.rooshil_notes.CounterListActivity" />
+        </activity>
+        <activity
+            android:name="cs.ualberta.ca.rooshil_notes.CounterRenameActivity"
+            android:label="@string/title_activity_counter_rename"
+            android:parentActivityName="cs.ualberta.ca.rooshil_notes.CounterActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs.ualberta.ca.rooshil_notes.CounterActivity" />
+        </activity>
+        <activity
+            android:name="cs.ualberta.ca.rooshil_notes.CounterStatisticsActivity"
+            android:label="@string/title_activity_counter_statistics"
+            android:parentActivityName="cs.ualberta.ca.rooshil_notes.CounterActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs.ualberta.ca.rooshil_notes.CounterActivity" />
+        </activity>
+        <activity
+            android:name="cs.ualberta.ca.rooshil_notes.CreateCounterActivity"
+            android:label="@string/title_activity_create_counter"
+            android:parentActivityName="cs.ualberta.ca.rooshil_notes.CounterListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cs.ualberta.ca.rooshil_notes.CounterListActivity" />
         </activity>
     </application>
 
