@@ -29,7 +29,7 @@ public class CreateCounterActivity extends CounterListActivity {
 			@Override
 			public void onClick(View v) {
 				String name = counterName.getText().toString();
-				CounterListModel.addCounter(name);
+				counterListObject.addCounter(name);
 				saveToFile();
 				finish();
 			}

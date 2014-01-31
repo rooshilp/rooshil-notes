@@ -23,8 +23,8 @@ import android.widget.ListView;
 public class CounterListActivity extends Activity {
 
 	private static String saveFile = "counterList.sav";
-	private static int currentCounter;
-	private CounterListModel counterListObject;
+	protected static int currentCounter;
+	protected static CounterListModel counterListObject;
 	private ArrayAdapter<CounterModel> counterListAdapter;
 	private ListView counterListView;
 	private Button createCounter;
@@ -42,7 +42,7 @@ public class CounterListActivity extends Activity {
 				startActivity(new Intent(CounterListActivity.this, CreateCounterActivity.class));
 			}
 		});
-		this.loadFromFile();
+		loadFromFile();
 		counterListView = (ListView) findViewById(R.id.counterList);
 		counterListAdapter = new ArrayAdapter<CounterModel>(CounterListActivity.this, android.R.layout.simple_list_item_1, counterListObject.getCounterList());
 		counterListView.setAdapter(counterListAdapter);
@@ -60,6 +60,12 @@ public class CounterListActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		counterListAdapter.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -90,8 +96,7 @@ public class CounterListActivity extends Activity {
 			objectinputstream.close();
 		}
 		catch (FileNotFoundException e) {
-			createNewCounterList();
-			e.printStackTrace();
+			counterListObject = new CounterListModel();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -106,9 +111,6 @@ public class CounterListActivity extends Activity {
 		counterListObject = null;
 	}
 	
-	private void createNewCounterList() {
-		counterListObject = new CounterListModel();
-	}
 	
 	protected void setCurrentCounter(int i) {
 		currentCounter = i;
@@ -119,6 +121,6 @@ public class CounterListActivity extends Activity {
 	}
 	
 	protected void removeCurrentCounter() {
-		CounterListModel.removeCounter(currentCounter);
+		counterListObject.removeCounter(currentCounter);
 	}
 }

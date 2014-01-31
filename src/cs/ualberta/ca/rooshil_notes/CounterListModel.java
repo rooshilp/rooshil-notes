@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class CounterListModel implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private static ArrayList<CounterModel> counterList;
+	private ArrayList<CounterModel> counterList;
 
 	CounterListModel() {
 		super();
@@ -16,10 +16,10 @@ public class CounterListModel implements Serializable{
 	}
 	
 	public void sortCounterList() {
-		Collections.sort(CounterListModel.counterList, new Comparator<CounterModel>() {
+		Collections.sort(counterList, new Comparator<CounterModel>() {
 			@Override
 			public int compare(CounterModel counter1, CounterModel counter2) {
-				return counter1.getCount() - counter2.getCount();
+				return counter2.getCount() - counter1.getCount();
 			}
 		});
 	}
@@ -28,15 +28,15 @@ public class CounterListModel implements Serializable{
 		return counterList;
 	}
 
-	public static void  addCounter(String name) {
-		CounterListModel.counterList.add(new CounterModel(name));
+	public void  addCounter(String name) {
+		counterList.add(new CounterModel(name));
 	}
 	
-	public static void removeCounter(int index) {
-		CounterListModel.counterList.remove(index);
+	public void removeCounter(int index) {
+		counterList.remove(index);
 	}
 	
-	public static CounterModel getCounter(int index) {
-		return CounterListModel.counterList.get(index);
+	public CounterModel getCounter(int index) {
+		return counterList.get(index);
 	}
 }
