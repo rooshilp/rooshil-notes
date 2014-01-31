@@ -1,14 +1,19 @@
 package cs.ualberta.ca.rooshil_notes;
 
 import android.os.Bundle;
-import android.app.Activity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.v4.app.NavUtils;
+
+/*
+ * The CreateCounterActivity is accessed from the CounterListActivity and 
+ * is used to create a new instance of a CounterModel object within the
+ * CounterListModel object. 
+ */
 
 public class CreateCounterActivity extends CounterListActivity {
 

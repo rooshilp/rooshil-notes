@@ -1,10 +1,17 @@
 package cs.ualberta.ca.rooshil_notes;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+
+/*
+ * CounterRenameActivity provides the ability to rename a counter.
+ * It is accessed directly from CounterActivity and changes the name
+ * string in the CounterModel.
+ * 
+ * This activity was not fully implemented and therefore does not function.
+ */
 
 public class CounterRenameActivity extends CounterListActivity {
 

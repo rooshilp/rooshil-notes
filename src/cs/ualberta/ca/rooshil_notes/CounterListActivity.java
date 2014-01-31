@@ -6,19 +6,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+/* 
+ * CounterListActivity is the primary activity for the application.
+ * It acts as a superclass to all other activities and provides 
+ * functionality for IO to save and load data, counter tracking
+ * to allow the app to know which counter to access and the counterListObject
+ * attribute which is used to store all counters. It can initiate CounterActivity
+ * and CreateCounterActivity.
+ */
 
 public class CounterListActivity extends Activity {
 

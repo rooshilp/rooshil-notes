@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/*
+ * CounterListModel is an object used to store an ArrayList of CounterModels.
+ * It also provides the ability to sort the ArrayList by number of counts.
+ */
 
 public class CounterListModel implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -15,6 +19,11 @@ public class CounterListModel implements Serializable{
 		counterList = new ArrayList<CounterModel>();
 	}
 	
+	/*
+	 * sortCounterList uses collections and a comparator to sort the list
+	 * in decreasing order of counts.
+	 * sortCounterList was inspired by a StackOverflow answer. Link in Readme.
+	 */
 	public void sortCounterList() {
 		Collections.sort(counterList, new Comparator<CounterModel>() {
 			@Override

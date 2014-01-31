@@ -1,7 +1,6 @@
 package cs.ualberta.ca.rooshil_notes;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+
+/*
+ * CounterActivity is a subclass of CounterListActvity and provides
+ * access to the actual counters and ability to increment, reset,
+ * rename, and delete counters. It can initiate CounterRenameActvitiy,
+ * and CounterStatisticsActivity.
+ */
 
 public class CounterActivity extends CounterListActivity {
 

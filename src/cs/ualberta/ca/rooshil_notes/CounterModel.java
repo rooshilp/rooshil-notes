@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+/*
+ * CounterModel is the class of all counter objects and all information
+ * regarding the counter. It also contains methods to increment counts,
+ * reset counts and get statistics based on Date objects added to an
+ * arraylist when incrementCount() is called.
+ */
+
 public class CounterModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -46,6 +53,12 @@ public class CounterModel implements Serializable {
 		return countDates;
 	}
 	
+	/*
+	 * All statistics methods are based on hourly statistics with a few removals.
+	 * They utilization hashmaps to determine frequency based on date.
+	 * Inspiration for the method was found on a few stackoverload answers.
+	 * Links in the readme.
+	 */
 	public ArrayList<String> getHourlyStatistics() {
 		HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 		String[] monthName = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Nov", "Dec"};
