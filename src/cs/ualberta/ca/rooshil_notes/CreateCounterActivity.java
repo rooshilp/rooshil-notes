@@ -4,16 +4,31 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 
 public class CreateCounterActivity extends Activity {
 
+	private Button createCounter;
+	private EditText counterName;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_counter);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		createCounter = (Button) findViewById(R.id.create);
+		counterName = (EditText) findViewById(R.id.namebox);
+		
+		createCounter.setOnClickListener(new View.onClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+			}
+		}
 	}
 
 	/**

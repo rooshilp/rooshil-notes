@@ -1,6 +1,7 @@
 package cs.ualberta.ca.rooshil_notes;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,7 +9,12 @@ import java.io.ObjectOutputStream;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,8 +33,25 @@ public class CounterListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		createCounter = (Button) findViewById(R.id.newCounter);
 		
+		createCounter = (Button) findViewById(R.id.newCounter);
+		createCounter.setOnClickListener (new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(CounterListActivity.this, CreateCounterActivity.class));
+			}
+		});
+		this.loadFromFile();
+		counterListView = (ListView) findViewById(R.id.counterList);
+		counterListAdapter = new ArrayAdapter<CounterModel>(this, android.R.layout.simple_list_item_1, CounterListModel.getCounterList());
+		counterListView.setAdapter(counterListAdapter);
+		counterListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				CounterListActivity.this.setCurrentCounter(position);
+				startActivity(new Intent(CounterListActivity.this, CounterActivity.class));
+			}
+		});
 	}
 
 	@Override
@@ -36,6 +59,14 @@ public class CounterListActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		counterList.sortCounterList();
+		this.saveToFile();
+		counterListAdapter.notifyDataSetChanged();
 	}
 
 	protected void saveToFile() {
@@ -57,9 +88,14 @@ public class CounterListActivity extends Activity {
 			counterList = (CounterListModel) objectinputstream.readObject();
 			objectinputstream.close();
 		}
+		catch (FileNotFoundException e) {
+			createNewCounterList();
+			e.printStackTrace();
+		}
 		catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} 
+		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
